@@ -91,7 +91,7 @@ def menu_transaccion(cuenta):
         case 3: 
             deposito = filtrar(input('Introduzca el monto a depositar: '),'float')
             saldos = modificar(saldos,cuenta,int(leer(saldos,cuenta))+deposito)
-            total_depositado = deposito
+            total_depositado += deposito
             print('|> saldo retirado') 
         case _: print('|***opcion no valida')
 while True:
