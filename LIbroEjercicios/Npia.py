@@ -80,15 +80,18 @@ def menu_transaccion(cuenta):
         case 2: 
             retiro = filtrar(input('Introduzca el monto a retirar: '),'float')
             if retiro <= cajero_saldo:
-                saldos = modificar(saldos,cuenta,retiro)
-                total_retirado += retiro
-                print('|> saldo retirado') 
+                if int(leer(saldos,cuenta)) < retiro:
+                    saldos = modificar(saldos,cuenta,int(leer(saldos,cuenta))-retiro)
+                    total_retirado += retiro
+                    print('|> saldo retirado') 
+                else:
+                    print('Saldo insuficiente')
             else:
                 print('Saldo en le cajero insuficiente')
         case 3: 
             deposito = filtrar(input('Introduzca el monto a depositar: '),'float')
-            saldos = modificar(saldos,cuenta,deposito)
-            total_depositado += deposito
+            saldos = modificar(saldos,cuenta,int(leer(saldos,cuenta))+deposito)
+            total_depositado = deposito
             print('|> saldo retirado') 
         case _: print('|***opcion no valida')
 while True:
