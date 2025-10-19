@@ -92,7 +92,7 @@ def menu_transaccion(cuenta):
             deposito = filtrar(input('Introduzca el monto a depositar: '),'float')
             saldos = modificar(saldos,cuenta,int(leer(saldos,cuenta))+deposito)
             total_depositado += deposito
-            print('|> saldo retirado') 
+            print('|> saldo depositado') 
         case _: print('|***opcion no valida')
 while True:
     menus('Menu principal',True,True); menus('Opciones',True,True,True); menus('[1] Recarga de efectivo cajero'); menus('[2] Registro de nuevo cliente'); menus('[3] Crear nuevo NIP');menus('[4] Realizar transacción en cajero');menus('[5] Reporte transacciones');menus('[6] Salir',border_bottom=True);
