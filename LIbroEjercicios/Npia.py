@@ -80,7 +80,7 @@ def menu_transaccion(cuenta):
         case 2: 
             retiro = filtrar(input('Introduzca el monto a retirar: '),'float')
             if retiro <= cajero_saldo:
-                if int(leer(saldos,cuenta)) < retiro:
+                if int(leer(saldos,cuenta)) > retiro:
                     saldos = modificar(saldos,cuenta,int(leer(saldos,cuenta))-retiro)
                     total_retirado += retiro
                     print('|> saldo retirado') 
