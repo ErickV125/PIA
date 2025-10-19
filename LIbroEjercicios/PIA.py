@@ -206,3 +206,62 @@ while True:
             break
         case _:
             print('Opcion no valida')
+            
+while True:
+    menus('Menu principal',True,True); menus('Opciones',True,True,True); 
+    menus('[1] Recarga de efectivo cajero'); 
+    menus('[2] Registro de nuevo cliente'); 
+    menus('[3] Crear nuevo NIP');
+    menus('[4] Realizar transacción en cajero');
+    menus('[5] Reporte transacciones');
+    menus('[6] Salir',border_bottom=True);opcion = filtrar(input('Escriba su opcion: '),'int');
+    match opcion:    
+        case 1: 
+            cajero_saldo += filtrar(input('Introduce la cantidad a recargar en el cajero: '),'float')
+            print(f'recarga de exitosa, saldo actual del cajero es: {cajero_saldo} ')
+        case 2:
+            if total_cuentas < 5:
+                while True: 
+                    num = filtrar(input('Introduce tu numero de cuenta: '),'int')
+                    print (buscar(cuentas, num))
+                    if buscar(cuentas, num) == False:
+                        cuentas += '['+str(num)+']' 
+                        break
+                while True:
+                    nip = filtrar(input('introduce tu NIP: '),'int')
+                    nip2 = filtrar(input('confirma tu NIP: '),'int')
+                    if(nip == nip2 and len(str(nip)) == 4):
+                        nips += '['+str(nip)+']'    
+                        break
+                nombres += escribir('Introduce tu nombre: ','str')
+                saldos += escribir('Introduce tu saldo: ','float')
+                total_cuentas+=1
+            else:
+                print('Limite de cuentas alcanzadas')
+        case 3:
+            num = filtrar(input('Introduce tu numero de cuenta: '),'int')
+            if buscar(cuentas, num):
+                viejo_nip = filtrar(input('Introduce tu NIP anterior: '),'int')
+                if leer(nips,buscar(cuentas, num,retornar_posicion=True)) == viejo_nip:
+                    while True:
+                        nip = filtrar(input('introduce tu NIP'),'int')
+                        nip2 = filtrar(input('confirma tu NIP'),'int')
+                        if(nip == nip2 and len(nip) == 4):
+                            nips = modificar(nips,leer(nips,buscar(cuentas, num,retornar_posicion=True)),nip)
+                            cambios_de_nip+=1
+                            break
+                        else: print('NIP no coincide')   
+                else: print('NIP no valido')
+            else: print('Cuenta no valido')
+        case 4:
+            num = filtrar(input('Introduce tu numero de cuenta: '),'str')
+            if buscar(cuentas, num):
+                viejo_nip = filtrar(input('Introduce tu NIP: '),'int')
+                if leer(nips,buscar(cuentas, num,retornar_posicion=True)) == viejo_nip:
+                    menu_transaccion(leer(nips,buscar(cuentas, num,retornar_posicion=True)))
+        case 5:
+            print(f'Total retirado: ${total_retirado} \n Total depositado: ${total_depositado} \n Total de cambios de nip: ${cambios_de_nip}')
+        case 6:
+            break
+        case _:
+            print('Opcion no valida')
