@@ -69,6 +69,8 @@ def modificar(objeto,hasta_posicion,valor):
             prePosicion += caracter_actual
         if posicion > hasta_posicion:
             postPosicion += caracter_actual
+        if hasta_posicion == 5:
+            postPosicion+=']'
     return prePosicion + '[' + str(valor) + ']' + postPosicion
 def menu_transaccion(cuenta):
     menus('Transacciones',True,True,True);menus('[1] Consultar saldo');menus('[2] Retirar dinero');menus('[3] Depositar dinero',border_bottom=True);  
