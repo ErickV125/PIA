@@ -41,7 +41,7 @@ def filtrar(texto,tipo):
     for posicion in texto:
         if posicion == '0' or posicion == '1' or posicion == '2' or posicion == '3' or posicion == '4' or posicion == '5' or posicion == '6' or posicion == '7' or posicion == '8' or posicion == '9' or (tipo == 'float' and posicion=='.'):
             valor+=posicion
-    if valor == '' or valor == ' ':
+    if valor == '' or valor == ' ' or valor == '.':
         valor = 0 
     if tipo == 'int':
         return int(valor)
@@ -141,7 +141,6 @@ while True:
                 print('|*** Cuenta no valido ')
         case 4:
             num = filtrar(input('|> Introduce tu numero de cuenta: '),'int')
-            print(int(leer(nips,buscar(cuentas, num,retornar_posicion=True))))
             if buscar(cuentas, num):
                 nip = filtrar(input('|> Introduce tu NIP: '),'int')
                 if int(leer(nips,buscar(cuentas, num,retornar_posicion=True))) == nip:
